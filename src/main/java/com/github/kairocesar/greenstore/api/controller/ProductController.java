@@ -2,6 +2,7 @@ package com.github.kairocesar.greenstore.api.controller;
 
 import com.github.kairocesar.greenstore.domain.entities.Product;
 import com.github.kairocesar.greenstore.domain.repository.ProductRepository;
+import com.github.kairocesar.greenstore.service.ProductQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +14,15 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    ProductRepository productRepository;
+    ProductQueryService productQueryService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductQueryService productQueryService) {
+        this.productQueryService = productQueryService;
     }
 
     @GetMapping
     public List<Product> getList() {
-        return productRepository.getList();
+        return productQueryService.getList();
     }
 }
