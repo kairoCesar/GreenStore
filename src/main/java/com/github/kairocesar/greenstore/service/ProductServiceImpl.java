@@ -4,12 +4,8 @@ import com.github.kairocesar.greenstore.dto.ProductDTO;
 import com.github.kairocesar.greenstore.entities.Product;
 import com.github.kairocesar.greenstore.repository.ProductRepository;
 
-import java.beans.Beans;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,7 +38,10 @@ public class ProductServiceImpl implements ProductService{
        return new ProductDTO(product.get().getName(), product.get().getPrice());
     }
 
-    public Product add(Product product) {
+    public Product add(ProductDTO productDTO) {
+        Random random = new Random();
+        Long internalControlCode = random.nextLong(100000000);
+        Product product = new Product(productDTO.name(), productDTO.price(), internalControlCode);
         return productRepository.save(product);
     }
 

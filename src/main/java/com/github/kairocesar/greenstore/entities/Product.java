@@ -5,8 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Entity
@@ -20,5 +18,15 @@ public class Product {
 
     private double price;
 
-    private int internalControlCode;
+    private long internalControlCode;
+
+    public Product(){
+
+    }
+
+    public Product(String name, double price, long internalControlCode) {
+        this.name = name;
+        this.price = price;
+        this.internalControlCode = internalControlCode;
+    }
 }
